@@ -1,4 +1,4 @@
-# MultiQuery Web App
+# MultiQuery Web App &nbsp;![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Status](https://img.shields.io/badge/Status-POC-orange)
 
 **MultiQuery** is a prototype application designed to integrate multiple Large Language Model (LLM) providers, including ChatGPT, Grok, and Gemini. The project provides a unified interface for querying LLMs, storing and managing query history in a MongoDB database, and exporting results in various formats. This application serves as the foundation for building a unified context management system.
 
