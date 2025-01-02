@@ -18,22 +18,38 @@
 ## **Project Structure**
 
 ```
-multiquery/
-|--> multiquery/
-      |--> api/
-            |--> endpoints/
-                  |--> query.py       # Endpoint to handle querying LLMs
-                  |--> history.py     # Endpoint to retrieve query history
-                  |--> export.py      # Endpoint for exporting results
-      |--> core/
-            |--> config.py           # Application settings
-            |--> services/
-                  |--> llm_service.py # Core logic for interacting with LLMs
-      |--> utils/
-            |--> json_exporter.py    # Utility for exporting results to JSON
-            |--> mongodb_client.py   # MongoDB connection and helpers
-      |--> app.py                    # FastAPI application entry point
-|--> output/                         # Directory for exported files
+/Users/naderbaradar/development_workspace/multiquery_webapp
+├── README.md
+├── multiquery
+│   ├── api
+│   │   ├── __init__.py
+│   │   └── endpoints
+│   │       ├── __init__.py
+│   │       ├── export.py
+│   │       ├── history.py
+│   │       └── query.py
+│   ├── app.py
+│   ├── config
+│   │   └── config.yaml
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   └── services
+│   │       ├── __init__.py
+│   │       └── llm_service.py
+│   ├── llm_providers
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── chatgpt.py
+│   │   ├── gemini.py
+│   │   └── grok.py
+│   └── utils
+│       ├── __init__.py
+│       ├── config_loader.py
+│       ├── json_exporter copy.py
+│       ├── json_exporter.py
+│       └── mongodb_client.py
+└── output
 ```
 
 ---
@@ -72,6 +88,12 @@ database:
 ## **Usage**
 
 ### **1. Start the Backend**
+**Preferred Method:**
+Run with `uvicorn`
+```bash
+uvicorn multiquery.app:app --reload
+```
+
 Run the FastAPI application:
 ```bash
 python multiquery/app.py

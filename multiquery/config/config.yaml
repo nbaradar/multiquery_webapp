@@ -1,0 +1,24 @@
+# File: multiquery/config/config.yaml
+
+llm_providers:
+  - name: chatgpt
+    class_path: multiquery.llm_providers.chatgpt.ChatGPTProvider
+    api_key: "YOUR_CHATGPT_API_KEY"
+  - name: grok
+    class_path: multiquery.llm_providers.grok.GrokProvider
+    api_key: "YOUR_GROK_API_KEY"
+  - name: gemini
+    class_path: multiquery.llm_providers.gemini.GeminiProvider
+    api_key: "YOUR_GEMINI_API_KEY"
+
+llm_configs:
+  - name: chatgpt
+    model: gpt-4o-mini
+    max_tokens: 100
+    temperature: 0.5
+
+database_configs:
+  - name: mongo_uri
+    uri: "mongodb://localhost:27017/"
+    db_name: "MultiQuery"
+    collection_name: "result"
