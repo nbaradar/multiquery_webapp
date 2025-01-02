@@ -15,45 +15,6 @@
 
 ---
 
-## **Project Structure**
-
-```
-/Users/naderbaradar/development_workspace/multiquery_webapp
-├── README.md
-├── multiquery
-│   ├── api
-│   │   ├── __init__.py
-│   │   └── endpoints
-│   │       ├── __init__.py
-│   │       ├── export.py
-│   │       ├── history.py
-│   │       └── query.py
-│   ├── app.py
-│   ├── config
-│   │   └── config.yaml
-│   ├── core
-│   │   ├── __init__.py
-│   │   ├── config.py
-│   │   └── services
-│   │       ├── __init__.py
-│   │       └── llm_service.py
-│   ├── llm_providers
-│   │   ├── __init__.py
-│   │   ├── base.py
-│   │   ├── chatgpt.py
-│   │   ├── gemini.py
-│   │   └── grok.py
-│   └── utils
-│       ├── __init__.py
-│       ├── config_loader.py
-│       ├── json_exporter copy.py
-│       ├── json_exporter.py
-│       └── mongodb_client.py
-└── output
-```
-
----
-
 ## **Setup Instructions**
 
 ### **1. Clone the Repository**
@@ -124,6 +85,45 @@ Save query results to MongoDB and optionally export to a JSON file using the `--
 
 ### Export to Markdown
 Use the `--export` flag to save query results as a Markdown file for sharing and documentation.
+
+---
+
+## **Project Structure**
+
+```
+/Users/naderbaradar/development_workspace/multiquery_webapp
+├── README.md
+├── multiquery
+│   ├── api
+│   │   ├── __init__.py
+│   │   └── endpoints
+│   │       ├── __init__.py
+│   │       ├── export.py
+│   │       ├── history.py
+│   │       └── query.py
+│   ├── app.py
+│   ├── config
+│   │   └── config.yaml
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   └── services
+│   │       ├── __init__.py
+│   │       └── llm_service.py
+│   ├── llm_providers
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── chatgpt.py
+│   │   ├── gemini.py
+│   │   └── grok.py
+│   └── utils
+│       ├── __init__.py
+│       ├── config_loader.py
+│       ├── json_exporter copy.py
+│       ├── json_exporter.py
+│       └── mongodb_client.py
+└── output
+```
 
 ---
 
