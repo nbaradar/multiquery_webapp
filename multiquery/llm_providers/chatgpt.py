@@ -1,12 +1,19 @@
 from .base import LLMProvider
+from typing import List, Optional
 from openai import OpenAI
 from openai import AsyncOpenAI
 import aiohttp
 class ChatGPTProvider(LLMProvider):
 
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, llm_configs: Optional[dict] = None):
         self.api_key = api_key
         self.provider_name = "ChatGPT"
+
+#TODO Need to implement another constructor that takes the llm_configs object
+    # def __init__(self, api_key: str, llm_configs: dict):
+    #     self.api_key = api_key
+    #     self.llm_configs = llm_configs
+    #     self.provider_name = "ChatGPT"
 
     async def send_query(self, query: str) -> str:
         """

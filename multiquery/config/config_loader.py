@@ -1,8 +1,6 @@
-# File: multiquery/utils/config_loader.py
-
 import yaml
 import importlib
-from multiquery.core.config import AppConfig
+from multiquery.config.config import AppConfig
 
 def load_config(file_path: str) -> AppConfig:
     """
@@ -21,10 +19,15 @@ def get_config():
     """
     return load_config("multiquery/config/config.yaml")
 
-def instantiate_providers(config: dict):
+def instantiate_providers(config):
     """
     Dynamically instantiates LLM providers based on the configuration.
     """
+
+    print("Config type:", type(config))  # Debugging line
+    print("Config content:", config)    # Debugging line
+
+
     providers = []
     for provider_config in config.llm_providers:
         # Dynamically import the provider class

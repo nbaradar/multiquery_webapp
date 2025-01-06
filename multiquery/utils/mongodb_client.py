@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from fastapi import Depends
 from multiquery.app import get_config
-from multiquery.core.config import AppConfig
+from multiquery.config.config import AppConfig
 
 def get_mongo_client(config: AppConfig = Depends(get_config)):
     """

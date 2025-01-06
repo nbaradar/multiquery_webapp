@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
-from multiquery.utils.config_loader import get_config
+from multiquery.config.config_loader import get_config
 from multiquery.api.endpoints import query, history, export
 from multiquery.utils.mongodb_client import get_mongo_collection
-from multiquery.core.config import AppConfig
+from multiquery.config.config import AppConfig
 
 # Create the FastAPI application
 app = FastAPI(title="Multiquery API", version="0.1.0")
@@ -25,7 +25,7 @@ async def startup_event():
     print(f"Loaded configuration: {config}")
 
     # Debug database connection
-    db_config = config.database_configs[0]
+    db_config = config.database
     print(f"Connecting to database {db_config.db_name} at {db_config.uri}")
     print(f"Using collection: {db_config.collection_name}")
 

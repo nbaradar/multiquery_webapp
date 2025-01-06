@@ -1,6 +1,6 @@
 from fastapi import Depends
 from multiquery.app import get_config
-from multiquery.core.config import AppConfig
+from multiquery.config.config import AppConfig
 from fastapi import APIRouter
 
 router = APIRouter()
