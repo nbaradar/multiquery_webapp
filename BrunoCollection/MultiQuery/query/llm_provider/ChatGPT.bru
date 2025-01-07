@@ -1,0 +1,23 @@
+meta {
+  name: ChatGPT
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{local}}/query/?llm_provider=ChatGPT
+  body: json
+  auth: none
+}
+
+params:query {
+  llm_provider: ChatGPT
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"prompt":"What is the capital of Denmark?"}
+}
