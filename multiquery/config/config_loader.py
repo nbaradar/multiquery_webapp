@@ -18,25 +18,3 @@ def get_config():
     Provide the application configuration as a dependency.
     """
     return load_config("multiquery/config/config.yaml")
-
-def instantiate_providers(config):
-    """
-    Dynamically instantiates LLM providers based on the configuration.
-    """
-
-    print("Config type:", type(config))  # Debugging line
-    print("Config content:", config)    # Debugging line
-
-
-    providers = []
-    for provider_config in config.llm_provider:
-        # Dynamically import the provider class
-        module_name, class_name = provider_config.class_path.rsplit(".", 1)
-        module = importlib.import_module(module_name)
-        provider_class = getattr(module, class_name)
-
-        # Instantiate the provider with API keys if available
-        api_key = provider_config.api_key
-        provider_instance = provider_class(api_key) if api_key else provider_class()  # Pass API key if required
-        providers.append(provider_instance)
-    return providers
