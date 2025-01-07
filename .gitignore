@@ -5,6 +5,8 @@ venv/
 # Ignore Python cache directories
 __pycache__/
 __pycache__
+classes_multiquery.png
+packages_multiquery.png
 
 # Other ignores
 *.pyc
