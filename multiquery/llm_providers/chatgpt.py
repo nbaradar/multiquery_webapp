@@ -5,25 +5,33 @@ from openai import AsyncOpenAI
 import aiohttp
 class ChatGPTProvider(LLMProvider):
 
-    def __init__(self, api_key: str, llm_configs: Optional[dict] = None):
+    def __init__(self, api_key: str, **config):
+        """
+        Initializes the ChatGPTProvider with the necessary configuration.
+        
+        :param api_key: API key for authenticating with the ChatGPT service.
+        :param configs: Additional configurations.
+        """
         self.api_key = api_key
         self.provider_name = "ChatGPT"
+        self.config = config
 
-#TODO Need to implement another constructor that takes the llm_configs object
-    # def __init__(self, api_key: str, llm_configs: dict):
-    #     self.api_key = api_key
-    #     self.llm_configs = llm_configs
-    #     self.provider_name = "ChatGPT"
-
-    async def send_query(self, query: str) -> str:
+    async def send_query(self, query: str, **overrides) -> str:
         """
-        Sends a query to ChatGPT and returns the response.
+        Send a query to ChatGPT asynchronously, with optional overrides for model settings.
+        
+        :param prompt: The user's query.
+        :param overrides: Configuration overrides (e.g., model, max_tokens).
+        :return: The response text from ChatGPT (String).
         """
 
-        #FOR DEVELOPMENT: Check for default API key value
-        #TODO return a more descriptive error message      
-        if (self.api_key == "YOUR_CHATGPT_API_KEY"):
-            return "Please set your ChatGPT API key in the config file."
+        # Merge default config with overrides
+        config = {**self.config, **overrides}
+
+        # Ensure the API key is set
+        if self.api_key == "YOUR_CHATGPT_API_KEY":
+            return "Error: ChatGPT API key is not configured."
+        
 
         #First create a client and set the API key (retrieved from config file)
         client = AsyncOpenAI(
@@ -33,15 +41,15 @@ class ChatGPTProvider(LLMProvider):
         #Now attempt to make a call to REST API
         try:
             chat_completion = await client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=config["model"],
                 messages=[
                     {
                     "role": "user",
                     "content": query,
                     },
                 ],
-                temperature=0.7,  # Adjust for creativity
-                max_tokens=150,   # Limit response length
+                temperature=config["temperature"],  # Adjust for creativity
+                max_tokens=config["max_tokens"],   # Limit response length
             )
             return chat_completion.choices[0].message.content
         except Exception as e: 

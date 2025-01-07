@@ -1,10 +1,9 @@
-from multiquery.llm_providers.chatgpt import ChatGPTProvider
-from multiquery.llm_providers.grok import GrokProvider
-from multiquery.config.config_loader import instantiate_providers
-from multiquery.config.config_loader import get_config
+from typing import Dict
+from multiquery.llm_providers.provider_factory import ProviderFactory
+from multiquery.api.dependencies import get_provider_factory
 import asyncio
 
-async def run_query(prompt: str) -> dict[str, str]:
+async def run_query(prompt: str, factory: ProviderFactory) -> Dict[str, str]:
     """
     Run the query through all configured LLM providers.
 
@@ -13,22 +12,11 @@ async def run_query(prompt: str) -> dict[str, str]:
     :return: A dictionary of provider names and their responses.
     """
     # Use Dependency Injection to get config instead of reloading
-    config = get_config()
-    providers = instantiate_providers(config)
-
-    # Extracts LLM specific configurations from App Config
-    llm_configs = {llm.name: llm for llm in config.llm_configs}
-
-    # Run querys concurrently
-    # tasks = [provider.send_query(prompt) for provider in providers]
-    # results = await asyncio.gather(*tasks, return_exceptions=True)
+    providers = factory.create_providers()
 
     # Run queries concurrently
-    tasks = []
-    for provider in providers:
-        provider_config = llm_configs.get(provider.__class__.__name__.lower(), {})
-        tasks.append(provider.send_query(prompt, **provider_config.dict()))
-
+    tasks = [provider.send_query(prompt) for provider in providers]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
 
     # Collect responses
     responses = {}

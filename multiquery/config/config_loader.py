@@ -29,7 +29,7 @@ def instantiate_providers(config):
 
 
     providers = []
-    for provider_config in config.llm_providers:
+    for provider_config in config.llm_provider:
         # Dynamically import the provider class
         module_name, class_name = provider_config.class_path.rsplit(".", 1)
         module = importlib.import_module(module_name)

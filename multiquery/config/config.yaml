@@ -7,21 +7,21 @@ llm_provider:
       max_tokens: 100
       temperature: 0.5
 
-  - name: grok
-    class_path: multiquery.llm_providers.grok.GrokProvider
-    api_key: "YOUR_GROK_API_KEY"
-    config:
-      model: grok-2-1212
-      max_tokens: 200
-      temperature: 0.7
+  # - name: grok
+  #   class_path: multiquery.llm_providers.grok.GrokProvider
+  #   api_key: "YOUR_GROK_API_KEY"
+  #   config:
+  #     model: grok-2-1212
+  #     max_tokens: 200
+  #     temperature: 0.7
 
-  - name: gemini
-    class_path: multiquery.llm_providers.gemini.GeminiProvider
-    api_key: "YOUR_GEMINI_API_KEY"
-    config:
-      model: gemini-1.5-flash
-      max_tokens: 150
-      temperature: 0.6
+  # - name: gemini
+  #   class_path: multiquery.llm_providers.gemini.GeminiProvider
+  #   api_key: "YOUR_GEMINI_API_KEY"
+  #   config:
+  #     model: gemini-1.5-flash
+  #     max_tokens: 150
+  #     temperature: 0.6
 
 database:
   uri: "mongodb://localhost:27017/"
