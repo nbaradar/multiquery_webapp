@@ -30,7 +30,7 @@ class ChatGPTProvider(LLMProvider):
 
         # Ensure the API key is set
         if self.api_key == "YOUR_API_KEY":
-            return "Error: ChatGPT API key is not configured."
+            return "Error: " + self.provider_name + " API key is not configured."
         
 
         #First create a client and set the API key (retrieved from config file)

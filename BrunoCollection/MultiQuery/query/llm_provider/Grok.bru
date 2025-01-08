@@ -1,17 +1,17 @@
 meta {
-  name: ChatGPT
+  name: Grok
   type: http
-  seq: 2
+  seq: 4
 }
 
 post {
-  url: {{local}}/query/?llm_provider=ChatGPT
+  url: {{local}}/query/?llm_provider=Grok
   body: json
   auth: none
 }
 
 params:query {
-  llm_provider: ChatGPT
+  llm_provider: Grok
 }
 
 headers {

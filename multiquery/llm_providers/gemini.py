@@ -24,7 +24,7 @@ class GeminiProvider(LLMProvider):
 
         # Ensure the API key is set
         if self.api_key == "YOUR_API_KEY":
-            return "Error: ChatGPT API key is not configured."
+            return "Error: " + self.provider_name + " API key is not configured."
         
         try:
             #Set API Key and model

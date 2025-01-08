@@ -5,13 +5,13 @@ meta {
 }
 
 post {
-  url: {{local}}/query/?llm_provider=ChatGPT
+  url: {{local}}/query/?llm_provider=Gemini
   body: json
   auth: none
 }
 
 params:query {
-  llm_provider: ChatGPT
+  llm_provider: Gemini
 }
 
 headers {
@@ -19,5 +19,5 @@ headers {
 }
 
 body:json {
-  {"prompt":"What is the capital of Denmark?"}
+  {"prompt":"What is the best data structure for me to give you as a prompt? What do you understand most intuitively?"}
 }

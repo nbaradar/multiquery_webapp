@@ -1,19 +1,25 @@
-from pymongo import MongoClient
-from fastapi import Depends
-from multiquery.app import get_config
-from multiquery.config.config import AppConfig
+from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.collection import Collection
 
-def get_mongo_client(config: AppConfig = Depends(get_config)):
+class MongoDBClient:
+    def __init__(self, uri: str, db_name: str):
+        print("Initializing MongoDB client=============================")
+        print("\t---URI: ", uri)
+        print("\t---DB Name: ", db_name)
+        self.client = AsyncIOMotorClient(uri)
+        self.db = self.client[db_name]
+
+    def get_collection(self, collection_name: str) -> Collection:
+        """
+        Retrieve a collection from the database.
+        """
+        return self.db[collection_name]
+    
+# Dependency Injection for FastAPI
+def get_mongo_client():
     """
     Dependency-injected MongoDB client.
     """
-    db_config = config.database_configs[0]  # Assume first config for now
-    return MongoClient(db_config.uri)
-
-def get_mongo_collection(client=Depends(get_mongo_client), config: AppConfig = Depends(get_config)):
-    """
-    Dependency-injected MongoDB collection.
-    """
-    db_config = config.database_configs[0]
-    db = client[db_config.db_name]
-    return db[db_config.collection_name]
+    from multiquery.config.config_loader import get_config
+    config = get_config().database
+    return MongoDBClient(config.uri, config.db_name)

@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 from multiquery.core.services.llm_service import run_query
-from multiquery.utils.mongodb_client import get_mongo_collection
+from multiquery.core.services.query_db_service import save_query_result
+from multiquery.utils.mongodb_client import get_mongo_client, MongoDBClient
 from multiquery.llm_providers.provider_factory import ProviderFactory
 from typing import Optional
 from multiquery.api.dependencies import get_provider_factory
@@ -17,12 +18,17 @@ class QueryRequest(BaseModel):
 async def query_api(
     # JSON body for the prompt
     request: QueryRequest,  
+
     # Optional query params
     model: Optional[str] = Query(None), 
     max_tokens: Optional[int] = Query(None),
     temperature: Optional[float] = Query(None),
     llm_provider: Optional[str] = Query(None),
-    factory: ProviderFactory = Depends(get_provider_factory),  # Injected factory
+
+    # Injected factory
+    factory: ProviderFactory = Depends(get_provider_factory), 
+    # Inject MongoDB client 
+    mongo_client: MongoDBClient = Depends(get_mongo_client),  
     # Optional parameter for filtering providers
     context_type: str = None  
 ):
@@ -79,7 +85,9 @@ async def query_api(
         "responses": responses
     }
 
-    #TODO: Store results in MongoDB
-    #get_mongo_collection.insert_one(result)
+    # Save the result to MongoDB
+    collection = mongo_client.get_collection("result")
+    inserted_id = await save_query_result(collection, request.prompt, responses)
+    print(f"Saved query result to MongoDB with ID: {inserted_id}")
 
     return {"prompt": prompt, "responses": responses}
