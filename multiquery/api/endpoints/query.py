@@ -38,7 +38,8 @@ async def query_api(
     Clients can override provider settings via query parameters.
     """
     #Create providers dynamically
-    providers = factory.create_providers()
+    providers = []
+    #providers = factory.create_providers()
 
     #Extract prompt from request
     prompt = request.prompt
@@ -48,12 +49,14 @@ async def query_api(
 
     if llm_provider:
         provider_names = llm_provider.split(",")
+        for provider_name in provider_names:
+            providers.append(factory.create_provider(provider_name)) 
         for provider in providers:
-            if provider.provider_name in provider_names:
-                tasks.append(provider.send_query(request.prompt))
+            tasks.append(provider.send_query(request.prompt))
     else:
         # Override LLM configs if provided as query parameters in request. 
         # Then, add the task for the provider's `send_query` method
+        providers = factory.create_providers()
         for provider in providers:
             # Retrieve the provider's default configuration
             provider_config = provider.config
@@ -73,6 +76,8 @@ async def query_api(
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
     # Collect responses from all the LLM tasks
+    #TODO THE LOGIC ISSUE IS HERE. YOU ARE PROBABLY LOOPING THROUGH ALL THE 
+    # PROVIDERS FOR THE NAMES INSTEAD OF PICKING THE NAME FROM THE CORRESPONDING USED PROVIDER
     responses = {}
     for provider, result in zip(providers, results):
         provider_name = provider.__class__.__name__
