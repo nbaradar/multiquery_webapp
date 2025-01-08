@@ -1,0 +1,23 @@
+meta {
+  name: ChatGPT,Gemini
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{local}}/query/?llm_provider=ChatGPT,Gemini
+  body: json
+  auth: none
+}
+
+params:query {
+  llm_provider: ChatGPT,Gemini
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"prompt":"Who are you?"}
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Gemini,Grok
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{local}}/query/?llm_provider=Gemini,Grok
+  body: json
+  auth: none
+}
+
+params:query {
+  llm_provider: Gemini,Grok
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"prompt":"Who are you?"}
+}

@@ -1,0 +1,23 @@
+meta {
+  name: ChatGPT,Grok
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{local}}/query/?llm_provider=ChatGPT,Grok
+  body: json
+  auth: none
+}
+
+params:query {
+  llm_provider: ChatGPT,Grok
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"prompt":"Who are you?"}
+}

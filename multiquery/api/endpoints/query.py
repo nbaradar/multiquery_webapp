@@ -47,8 +47,9 @@ async def query_api(
     tasks = []
 
     if llm_provider:
+        provider_names = llm_provider.split(",")
         for provider in providers:
-            if provider.provider_name == llm_provider:
+            if provider.provider_name in provider_names:
                 tasks.append(provider.send_query(request.prompt))
     else:
         # Override LLM configs if provided as query parameters in request. 
