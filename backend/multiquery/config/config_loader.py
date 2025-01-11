@@ -17,4 +17,4 @@ def get_config():
     """
     Provide the application configuration as a dependency.
     """
-    return load_config("multiquery/config/config.yaml")
+    return load_config("backend/multiquery/config/config.yaml")
