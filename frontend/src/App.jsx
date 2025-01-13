@@ -1,55 +1,73 @@
 //useState is the React hook that manages state (data that changes)
 import React, { useState } from "react";
 //Your custom components
-import ChatHistory from "./components/ChatHistory";
-import ChatInput from "./components/ChatInput";
+// import ChatHistory from "./components/ChatHistory";
+// import ChatInput from "./components/ChatInput";
+
+//New Components
+import QueryDisplay from "./components/QueryDisplay";
+import ResultsWindow from "./components/ResultWindow";
+import InputSection from "./components/InputSection";
+import ChatList from "./components/ChatList";
 
 //Functional component. React calls this whenever it needs to render/re-rencer your app
 function App() {
     //These are state variables.
     //They store data that changes over time
-    const [chatHistory, setChatHistory] = useState([]);
-    const [llmOptions, setLlmOptions] = useState({
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState([]);
+    const [activeProviders, setActiveProviders] = useState({
         ChatGPT: true,
-        Gemini: false,
+        Gemini: true,
         Grok: true,
+        Claude: false
     });
 
     //Event Handler. Updates the chathistory 
-    const handleSendMessage = (message) => {
-        setChatHistory((prev) => [
-        ...prev,
-        { user: "User", message },
-        { user: "LLM", message: `Response to: ${message}` }, // Mock response
+    const handleSendQuery = (newQuery) => {
+        setQuery(newQuery);
+
+        // Mock results (replace with API call)
+        setResults([
+          { provider: "ChatGPT", response: `${newQuery} is blah`, color: "red" },
+          { provider: "Gemini", response: `${newQuery} is blah`, color: "blue" },
+          { provider: "Claude", response: `${newQuery} is blah`, color: "orange" },
+          { provider: "Grok", response: `${newQuery} is blah`, color: "purple" },
         ]);
     };
 
     //Event Handler. Toggles state of LLM option
-    const toggleLlmOption = (option) => {
-        setLlmOptions((prev) => ({
+    const toggleProvider = (provider) => {
+        setActiveProviders((prev) => ({
         ...prev,
-        [option]: !prev[option],
+        [provider]: !prev[provider],
         }));
     };
 
     //Defines what the component renders. React uses this JSX code to create the HTML structure
     return (
-        <div className="h-screen flex flex-col">
-        {/* Chat History */}
-        <div className="flex-grow bg-gray-100 p-4 overflow-y-auto">
-            {/* Chat History */}
-            <ChatHistory chatHistory={chatHistory} />
-        </div>
+        <div className="h-screen flex">
+      {/* Left-Side Navigation (Chat List Placeholder) */}
+      <div className="w-1/6 border-r bg-gray-100">
+        <ChatList />
+      </div>
 
-        {/* Chat Input */}
-        <div className="border-t p-4 bg-white">
-            <ChatInput
-            onSend={handleSendMessage}
-            llmOptions={llmOptions}
-            toggleLlmOption={toggleLlmOption}
-            />
-        </div>
-        </div>
+      {/* Main Content */}
+      <div className="flex-grow flex flex-col">
+        {/* Top Section */}
+        <QueryDisplay query={query} activeProviders={activeProviders} />
+
+        {/* Middle Section */}
+        <ResultsWindow results={results} />
+
+        {/* Bottom Section */}
+        <InputSection
+          onSend={handleSendQuery}
+          activeProviders={activeProviders}
+          toggleProvider={toggleProvider}
+        />
+      </div>
+    </div>
     );
 }
 //This export statement is making the App component available to other files
