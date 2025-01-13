@@ -61,14 +61,14 @@ const ChatInput = ({ onSend, llmOptions, toggleLlmOption }) => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message..."
+            placeholder="Enter your query..."
             className="input input-bordered flex-grow"
         />
 
         {/* Submit Button 
             Sends the message when clicked. 
             The onClick event triggers the handleSend function*/}
-        <button onClick={handleSend} className="btn btn-primary">
+        <button style={{ backgroundColor: '#9d9dbf', color: 'white' }} onClick={handleSend} className="btn btn-primary">
             Submit
         </button>
         </div>
