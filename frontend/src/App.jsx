@@ -23,13 +23,13 @@ function App() {
         Claude: false
     });
 
-    //Event Handler. Updates the chathistory 
+    //Event Handler. Updates the results window 
     const handleSendQuery = (newQuery) => {
         setQuery(newQuery);
 
         // Mock results (replace with API call)
         setResults([
-          { provider: "ChatGPT", response: `${newQuery} is blah`, color: "red" },
+          { provider: "ChatGPT", response: `${newQuery} is blah`, color: "bg-gray-400" },
           { provider: "Gemini", response: `${newQuery} is blah`, color: "blue" },
           { provider: "Claude", response: `${newQuery} is blah`, color: "orange" },
           { provider: "Grok", response: `${newQuery} is blah`, color: "purple" },
