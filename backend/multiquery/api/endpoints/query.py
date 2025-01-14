@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
-from multiquery.core.services.llm_service import run_query
-from multiquery.core.services.query_db_service import save_query_result
-from multiquery.utils.mongodb_client import get_mongo_client, MongoDBClient
-from multiquery.llm_providers.provider_factory import ProviderFactory
+from backend.multiquery.core.services.llm_service import run_query
+from backend.multiquery.core.services.query_db_service import save_query_result
+from backend.multiquery.utils.mongodb_client import get_mongo_client, MongoDBClient
+from backend.multiquery.llm_providers.provider_factory import ProviderFactory
 from typing import Optional
-from multiquery.api.dependencies import get_provider_factory
+from backend.multiquery.api.dependencies import get_provider_factory
 import asyncio
 
 router = APIRouter()

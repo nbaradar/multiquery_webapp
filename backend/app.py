@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from multiquery.config.config_loader import get_config
-from multiquery.api.endpoints import query, history, export
+from backend.multiquery.config.config_loader import get_config
+from backend.multiquery.api.endpoints import query, history, export
 
 # Create the FastAPI application
 app = FastAPI(title="Multiquery API", version="0.1.0")

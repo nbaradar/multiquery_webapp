@@ -1,6 +1,6 @@
 from typing import Dict
-from multiquery.llm_providers.provider_factory import ProviderFactory
-from multiquery.api.dependencies import get_provider_factory
+from backend.multiquery.llm_providers.provider_factory import ProviderFactory
+from backend.multiquery.api.dependencies import get_provider_factory
 import asyncio
 
 async def run_query(prompt: str, factory: ProviderFactory) -> Dict[str, str]:

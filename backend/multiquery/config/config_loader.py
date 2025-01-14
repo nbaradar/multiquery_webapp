@@ -1,6 +1,6 @@
 import yaml
 import importlib
-from multiquery.config.config import AppConfig
+from backend.multiquery.config.config import AppConfig
 
 def load_config(file_path: str) -> AppConfig:
     """
