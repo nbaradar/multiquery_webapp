@@ -8,6 +8,11 @@ __pycache__
 classes_multiquery.png
 packages_multiquery.png
 
+# React
+node_modules/
+.env
+build/
+
 # Other ignores
 *.pyc
 *.pyo

@@ -52,8 +52,8 @@ const InputSection = ({ onSend, activeProviders, toggleProvider }) => {
       />
 
       {/* Submit Button */}
-      <button onClick={handleSend} className="btn btn-primary">
-        Submit
+      <button onClick={handleSend} className="btn btn-primary" disabled={loading}>
+        {loading ? "Loading..." : "Submit"}
       </button>
     </div>
   );

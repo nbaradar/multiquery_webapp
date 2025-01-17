@@ -1,9 +1,19 @@
 from fastapi import FastAPI
 from backend.multiquery.config.config_loader import get_config
 from backend.multiquery.api.endpoints import query, history, export
+from fastapi.middleware.cors import CORSMiddleware
 
 # Create the FastAPI application
 app = FastAPI(title="Multiquery API", version="0.1.0")
+
+# Add CORS middleware to your FastAPI app:
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Frontend dev server
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 #Include API routers
 app.include_router(query.router, prefix="/query", tags=["Query"])

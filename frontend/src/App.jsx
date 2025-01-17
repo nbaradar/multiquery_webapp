@@ -4,11 +4,15 @@ import React, { useState } from "react";
 // import ChatHistory from "./components/ChatHistory";
 // import ChatInput from "./components/ChatInput";
 
+import axios from "axios";
+
 //New Components
 import QueryDisplay from "./components/QueryDisplay";
 import ResultsWindow from "./components/ResultWindow";
 import InputSection from "./components/InputSection";
 import ChatList from "./components/ChatList";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
 //Functional component. React calls this whenever it needs to render/re-rencer your app
 function App() {
@@ -23,11 +27,10 @@ function App() {
         Claude: false
     });
 
-    //Event Handler. Updates the results window 
+    //Event Handler. Updates the results window. Handles query submission
     const handleSendQuery = (newQuery) => {
-        setQuery(newQuery);
+        setQuery(newQuery); //Update the displayed query
 
-        // Mock results (replace with API call)
         setResults([
           { provider: "ChatGPT", response: `${newQuery} is blah`, color: "bg-gray-400" },
           { provider: "Gemini", response: `${newQuery} is blah`, color: "blue" },
