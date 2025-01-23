@@ -18,9 +18,9 @@ const InputSection = ({ onSend, activeProviders, toggleProvider }) => {
   };
 
   return (
-    <div className="p-4 border-t bg-white flex items-center space-x-4">
+    <div className="p-4 border-t flex items-center space-x-4">
       {/* Dropdown Menu */}
-      <div className="dropdown">
+      <div className="dropdown dropdown-top">
         <label tabIndex={0} className="btn btn-secondary">
           Providers
         </label>
@@ -43,13 +43,12 @@ const InputSection = ({ onSend, activeProviders, toggleProvider }) => {
       </div>
 
       {/* Input Field */}
-      <input
-        type="text"
+      <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type your query..."
-        className="input input-bordered flex-grow"
-      />
+        className="textarea textarea-bordered border flex-grow"
+      ></textarea>
 
       {/* Submit Button */}
       <button onClick={handleSend} className="btn btn-primary">Submit</button>
