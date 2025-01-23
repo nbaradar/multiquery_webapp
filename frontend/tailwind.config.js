@@ -6,7 +6,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")], // Ensure DaisyUI is added as a plugin
+  plugins: [
+    require("daisyui"), // Ensure DaisyUI is added as a plugins
+    require("@tailwindcss/typography")
+  ], 
   daisyui: {
     themes: [
       "light",
