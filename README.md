@@ -111,7 +111,7 @@
 ---
 
 ## UI as of Jan 
-![image](https://github.com/user-attachments/assets/8a0dab1b-1873-497e-b0a8-e71a43ae2eff)
+![image](https://github.com/user-attachments/assets/7fbf72e7-0297-4ca1-aa07-82c146577367)
 
 ---
 
