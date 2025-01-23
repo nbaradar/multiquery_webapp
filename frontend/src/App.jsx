@@ -28,19 +28,19 @@ function App() {
     });
     const providerColors = {
       ChatGPTProvider: {
-        "bg": "bg-zinc-200",
+        "bg": "bg-primary-content",
         "text": "text-zinc-450"
       },
       GeminiProvider: {
-        "bg": "bg-blue-200",
+        "bg": "bg-primary-content",
         "text": "text-blue-450"
       },
       GrokProvider: {
-        "bg": "bg-slate-200",
+        "bg": "bg-primary-content",
         "text": "text-slate-450"
       },
       ClaudeProvider: {
-        "bg": "bg-orange-100",
+        "bg": "bg-primary-content",
         "text": "bg-orange-400"
       }
     }
@@ -80,7 +80,7 @@ function App() {
     return (
         <div className="h-screen flex">
       {/* Left-Side Navigation (Chat List Placeholder) */}
-      <div className="w-1/6 border-r bg-gray-100">
+      <div className="w-1/6 border-r">
         <ChatList />
       </div>
 

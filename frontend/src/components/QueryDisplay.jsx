@@ -6,7 +6,7 @@ import React from "react";
 
 const QueryDisplay = ({ query, activeProviders }) => {
   return (
-    <div className="p-4 border-b bg-gray-100">
+    <div className="p-4 border-b">
       <h2 className="font-bold text-lg mb-2">{query || "Your query will appear here"}</h2>
       <div className="flex space-x-2">
         {Object.entries(activeProviders).map(

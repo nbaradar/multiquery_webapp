@@ -26,10 +26,11 @@ const InputSection = ({ onSend, activeProviders, toggleProvider }) => {
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-45"
         >
           {Object.keys(activeProviders).map((provider) => (
             <li key={provider} className="flex items-center justify-between">
+              <span>
               <span>{provider}</span>
               <input
                 type="checkbox"
@@ -37,6 +38,7 @@ const InputSection = ({ onSend, activeProviders, toggleProvider }) => {
                 onChange={() => toggleProvider(provider)}
                 className="toggle toggle-primary"
               />
+              </span>
             </li>
           ))}
         </ul>
