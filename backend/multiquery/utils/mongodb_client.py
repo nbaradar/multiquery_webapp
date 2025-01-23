@@ -20,6 +20,6 @@ def get_mongo_client():
     """
     Dependency-injected MongoDB client.
     """
-    from backend.multiquery.config.config_loader import get_config
+    from multiquery.config.config_loader import get_config
     config = get_config().database
     return MongoDBClient(config.uri, config.db_name)

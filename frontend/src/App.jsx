@@ -4,15 +4,15 @@ import React, { useState } from "react";
 // import ChatHistory from "./components/ChatHistory";
 // import ChatInput from "./components/ChatInput";
 
-import axios from "axios";
+//import axios from "axios";
+//const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
 //New Components
 import QueryDisplay from "./components/QueryDisplay";
 import ResultsWindow from "./components/ResultWindow";
 import InputSection from "./components/InputSection";
 import ChatList from "./components/ChatList";
-
-const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
+import { fetchResults } from "./api";
 
 //Functional component. React calls this whenever it needs to render/re-rencer your app
 function App() {
@@ -28,19 +28,27 @@ function App() {
     });
 
     //Event Handler. Updates the results window. Handles query submission
-    const handleSendQuery = (newQuery) => {
+    const handleSendQuery = async (newQuery) => {
         setQuery(newQuery); //Update the displayed query
+        try{
+          const data = await fetchResults(newQuery);
+          console.log(data)
+          let provider_results = []
 
-        setResults([
-          { provider: "ChatGPT", response: `${newQuery} is blah`, color: "bg-gray-400" },
-          { provider: "Gemini", response: `${newQuery} is blah`, color: "blue" },
-          { provider: "Claude", response: `${newQuery} is blah`, color: "orange" },
-          { provider: "Grok", response: `${newQuery} is blah`, color: "purple" },
-        ]);
+          for(const provider in data.responses){
+            const response = data.responses[provider]
+            provider_results.push({ provider: provider, response: response, color: "bg-gray-400" })
+          }
+          setResults(provider_results)
+        } catch (error) {
+          console.error(error);
+          alert("Failed to fetch results.");
+        }
     };
 
     //Event Handler. Toggles state of LLM option
     const toggleProvider = (provider) => {
+        //This anonymous function updates the activeProviders object in App.jsx
         setActiveProviders((prev) => ({
         ...prev,
         [provider]: !prev[provider],

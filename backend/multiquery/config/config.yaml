@@ -1,6 +1,6 @@
 llm_provider:
   - name: chatgpt
-    class_path: backend.multiquery.llm_providers.chatgpt.ChatGPTProvider
+    class_path: multiquery.llm_providers.chatgpt.ChatGPTProvider
     api_key: "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"
     config:
       model: gpt-4o-mini
@@ -8,7 +8,7 @@ llm_provider:
       temperature: 0.5
 
   - name: grok
-    class_path: backend.multiquery.llm_providers.grok.GrokProvider
+    class_path: multiquery.llm_providers.grok.GrokProvider
     api_key: "xai-cYNWzOkhEwnxmkszzGFhNaJ0pBEZkVJWokp9WUAwQN3OGtkjy1gCmMHFQQp8M8D2SOfckMl32DsvgFH7"
     config:
       model: grok-2-1212
@@ -16,7 +16,7 @@ llm_provider:
       temperature: 0.7
 
   - name: gemini
-    class_path: backend.multiquery.llm_providers.gemini.GeminiProvider
+    class_path: multiquery.llm_providers.gemini.GeminiProvider
     api_key: "AIzaSyDKNzsb2E1EItB4WE6CyVEFI2KDduJQqWw"
     config:
       model: gemini-1.5-flash

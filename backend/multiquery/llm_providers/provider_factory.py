@@ -1,7 +1,7 @@
 import importlib
 from typing import List, Optional
-from backend.multiquery.config.config import AppConfig
-from backend.multiquery.llm_providers.base import LLMProvider 
+from multiquery.config.config import AppConfig
+from multiquery.llm_providers.base import LLMProvider 
 
 class ProviderFactory:
     """
