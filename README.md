@@ -110,6 +110,11 @@
 
 ---
 
+## UI as of Jan 
+![image](https://github.com/user-attachments/assets/8a0dab1b-1873-497e-b0a8-e71a43ae2eff)
+
+---
+
 ## Roadmap
 
 ### Upcoming Features
