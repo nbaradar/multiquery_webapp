@@ -26,9 +26,27 @@ function App() {
         Grok: true,
         Claude: false
     });
+    const providerColors = {
+      ChatGPTProvider: {
+        "bg": "bg-zinc-200",
+        "text": "text-zinc-450"
+      },
+      GeminiProvider: {
+        "bg": "bg-blue-200",
+        "text": "text-blue-450"
+      },
+      GrokProvider: {
+        "bg": "bg-slate-200",
+        "text": "text-slate-450"
+      },
+      ClaudeProvider: {
+        "bg": "bg-orange-100",
+        "text": "bg-orange-400"
+      }
+    }
 
     //Event Handler. Updates the results window. Handles query submission
-    const handleSendQuery = async (newQuery,activeProviders) => {
+    const handleSendQuery = async (newQuery) => {
         setQuery(newQuery); //Update the displayed query
         try{
           const data = await fetchResults(newQuery, activeProviders);
@@ -37,7 +55,10 @@ function App() {
 
           for(const provider in data.responses){
             const response = data.responses[provider]
-            provider_results.push({ provider: provider, response: response, color: "bg-gray-400" })
+
+            const bg_color = providerColors[provider].bg || "bg-red-200"; //fallback if no provider found in mapping
+            const text_color = providerColors[provider].text || "bg-red-500"
+            provider_results.push({ provider: provider, response: response, bg_color: bg_color, text_color: text_color})
           }
           setResults(provider_results)
         } catch (error) {
