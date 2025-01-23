@@ -28,10 +28,10 @@ function App() {
     });
 
     //Event Handler. Updates the results window. Handles query submission
-    const handleSendQuery = async (newQuery) => {
+    const handleSendQuery = async (newQuery,activeProviders) => {
         setQuery(newQuery); //Update the displayed query
         try{
-          const data = await fetchResults(newQuery);
+          const data = await fetchResults(newQuery, activeProviders);
           console.log(data)
           let provider_results = []
 
