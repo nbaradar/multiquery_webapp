@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, Query
+from fastapi.logger import logger as fastapi_logger
 from pydantic import BaseModel
 from multiquery.core.services.llm_service import run_query
 from multiquery.core.services.query_db_service import save_query_result
@@ -7,6 +8,7 @@ from multiquery.llm_providers.provider_factory import ProviderFactory
 from typing import Optional
 from multiquery.api.dependencies import get_provider_factory
 import asyncio
+
 
 router = APIRouter()
 
